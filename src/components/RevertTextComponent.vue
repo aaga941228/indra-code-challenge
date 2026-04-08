@@ -2,31 +2,34 @@
   <div class="container">
     <h1>Revert Text</h1>
 
-    <textarea v-model="text" placeholder="Type something..."></textarea>
+    <textarea v-model="textInput" placeholder="Type something..."></textarea>
 
     <div class="buttons-container">
       <button @click="clearInput">Clear</button>
-      <button class="submit" @click="handleSubmit">Submit</button>
+      <button class="submit" @click="revertText">Submit</button>
     </div>
 
-    <p v-if="showText">Texto enviado correctamente</p>
+    <p v-if="revertedText.length > 0">{{ revertedText }}</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const text = ref("");
-const showText = ref(false);
+const textInput = ref("");
+const revertedText = ref("");
 
 const clearInput = () => {
-  text.value = "";
-  showText.value = false;
+  textInput.value = "";
+  revertedText.value = "";
 };
 
-const handleSubmit = () => {
-  if (text.value.trim() !== "") {
-    showText.value = true;
+const revertText = () => {
+  if (textInput.value.trim() !== "") {
+    revertedText.value = textInput.value
+      .split(" ")
+      .map((word) => word.split("").reverse().join(""))
+      .join(" ");
   }
 };
 </script>
@@ -61,6 +64,6 @@ button {
 }
 
 .submit {
-  background-color: #53A653;
+  background-color: #53a653;
 }
 </style>

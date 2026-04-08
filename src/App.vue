@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import RevertTextComponent from "./components/RevertTextComponent.vue";
 </script>
 
 <template>
-  <HelloWorld />
+  <RevertTextComponent />
 </template>
